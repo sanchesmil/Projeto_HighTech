@@ -1,0 +1,149 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.htcursos</groupId>
+	<artifactId>cjweb3</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>cjweb3_HighTech</name>
+	<description>Curso Java Web Avançado</description>
+
+	<!-- Definindo propriedades do pom.xml -->
+	<properties>
+		<hibernate.group>org.hibernate</hibernate.group>
+		<hibernate.version>5.0.9.Final</hibernate.version>
+		<slf4j.version>1.7.21</slf4j.version>
+		<spring.group>org.springframework</spring.group>
+		<spring.version>4.2.5.RELEASE</spring.version>
+
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>${hibernate.group}</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${hibernate.group}</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- Banco de Dados -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901-1.jdbc4</version>
+		</dependency>
+
+
+		<!-- JUnit Framework Teste - -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+
+		<!-- Spring Framework -->
+
+		<!-- Framework Spring Modulo Injecao de Dependencias -->
+		<dependency>
+			<groupId>${spring.group}</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${spring.group}</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Framework Spring Modulo Integracao JPA Hibernate -->
+		<dependency>
+			<groupId>${spring.group}</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Biblioteca para o Data Source -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+
+		<!-- Servlets e Dependência do Primefaces -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>casablanca</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+
+		<!-- Dependencia para implementação do JSF (core do JSF) -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
+		<!-- Integração do Spring e JUnit, habilitando a classe 'SpringJUnit4ClassRunner' 
+			e o uso das anotações: @ContextConfiguration e @TransactionConfiguration -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.2.5.RELEASE</version>
+		</dependency>
+
+		<!-- Dependência do Spring na WEB (para trabalhar na web) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.2.5.RELEASE</version>
+		</dependency>
+
+		<!-- JSR330: Injeção de Dependência de anotações específica para JAVA - @Inject e @Named -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+	</dependencies>
+
+	<!-- Repositório do Primefaces - Habilita o projeto a buscar as bibliotecas 
+		do primefaces -->
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
+	</repositories>
+
+</project>
+

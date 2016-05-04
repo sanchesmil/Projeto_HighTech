@@ -1,0 +1,28 @@
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+
+	<persistence-unit name="persistence-unit"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+	</persistence-unit>
+</persistence>
+
+
+<!-- Não é mais necessário configurar o banco por aqui(persistence.xml) pois 
+	o Spring já tem as informações do BANCO que foram configuradas no arquivo 
+	(applicationContext.xml) Obs.: Se o Spring não estivesse sendo usado ai sim 
+	devo manter a configuração do BANCO neste arquivo (persistence.xml) 
+	
+	<properties> 
+		<property name="hibernate.connection.username" value="postgres" /> <property 
+							name="hibernate.connection.password" value="123456" /> <property name="hibernate.connection.driver_class" 
+							value="org.postgresql.Driver" /> <property name="hibernate.connection.url" 
+							value="jdbc:postgresql://localhost/cjweb3db" /> <property name="hibernate.cache.provider_class" 
+							value="org.hibernate.cache.NoCacheProvider" /> <property name="hibernate.show_sql" 
+							value="true" /> <property name="hibernate.hbm2ddl.auto" value="update" /> 
+	    <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" 	/>
+	 </properties>
+	  -->
+	
+

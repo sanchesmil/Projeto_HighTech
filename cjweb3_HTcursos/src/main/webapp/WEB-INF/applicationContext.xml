@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                  http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                  http://www.springframework.org/schema/tx 
+                  http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                  http://www.springframework.org/schema/context
+                  http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- Escaneador de componentes do Spring - ele procura todas as classes 
+		do pacote informado que receberam as suas anotações (ex. @Repository, @Service, 
+		@Controller) e instancia de uma única vez todas elas no seu contexto, ou 
+		seja, evita que eu instancie um por um os beans gerenciaveis (ex. UsuarioDAO) -->
+	<context:component-scan base-package="com.htcursos" />
+
+	<!-- Bean (UsuarioDAO) gerenciado pelo Spring e que será injetado por dependência 
+		<bean id="usuDao" class="com.htcursos.model.dao.UsuarioDAO" /> -->
+
+	<!-- Configurando o Data Source com os dados do meu Banco de Dados -->
+	<bean id="postgreSQLDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- Aqui é como se eu estivesse "setando" os dados do banco -->
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost/cjweb3db" />
+		<property name="username" value="postgres" />
+		<property name="password" value="123456" />
+	</bean>
+
+	<!-- Criando um EntityManager -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+
+		<!-- Referência às propriedades do banco -->
+		<property name="dataSource" ref="postgreSQLDataSource" />
+
+		<!-- Qual o Adapter JPA(Provedor) ? Neste caso é o Hibernate -->
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="true" />
+				<property name="showSql" value="true" />
+				<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Incluindo o bean para Anotações de Persistência -->
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<!-- Construção do Objeto de Gestão de transações JPA -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<!-- Vinculando com o objeto EntityManagerFactory construído anteriormente -->
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- Ao anotar @Transaction irá chamar o gerenciador de transações -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<!-- Registrando o View scope (Escopo de Visualização específico do JSF): 
+		permite que o Spring trabalhe com os ManagedBeans do JSF O Spring não fornece 
+		este escopo por default -->
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+		<property name="scopes">
+			<map>
+				<entry key="view">
+					<bean class="com.htcursos.controller.util.ViewScope" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

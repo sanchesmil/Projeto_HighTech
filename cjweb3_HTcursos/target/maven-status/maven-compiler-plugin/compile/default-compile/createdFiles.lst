@@ -1,0 +1,10 @@
+com\htcursos\controller\util\ViewScope.class
+com\htcursos\model\util\JPAUtil.class
+com\htcursos\controller\bean\UsuarioBean.class
+com\htcursos\model\entity\Cidade.class
+com\htcursos\model\service\ServiceException.class
+com\htcursos\model\dao\UsuarioDAO.class
+com\htcursos\model\service\UsuarioService.class
+com\htcursos\model\entity\Usuario.class
+com\htcursos\model\dao\DAOException.class
+com\htcursos\model\entity\Estado.class
