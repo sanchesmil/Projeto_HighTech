@@ -1,0 +1,8 @@
+
+Verificar o status:  git status
+
+Adicionar a mudança para commit: git add .
+
+Commitar no repositório local: git commit -m 'Texto com mudanças'
+
+enviar para o repositório web:  git push origin master
